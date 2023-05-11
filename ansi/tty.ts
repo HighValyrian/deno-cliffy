@@ -59,7 +59,7 @@ function factory(options?: TtyOptions): Tty {
   ): TtyChain {
     if (this) {
       update(args);
-      writer.writeSync(encoder.encode(result));
+      Deno.writeSync(1,encoder.encode(result));
       return this;
     }
     return factory(args[0] as TtyOptions ?? options);
@@ -68,7 +68,7 @@ function factory(options?: TtyOptions): Tty {
   tty.text = function (text: string): TtyChain {
     stack.push([text, []]);
     update();
-    writer.writeSync(encoder.encode(result));
+    Deno.writeSync(1,encoder.encode(result));
     return this;
   };
 

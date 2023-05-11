@@ -193,7 +193,7 @@ export abstract class GenericPrompt<
       this.clear();
     }
     this.#isFirstRun = false;
-    this.settings.writer.writeSync(this.#encoder.encode(content));
+    Deno.writeSync(1,this.#encoder.encode(content));
 
     if (y) {
       this.settings.tty.cursorUp(y);
